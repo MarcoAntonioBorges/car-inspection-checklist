@@ -1,86 +1,1335 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Roteiro de Inspeção - Cruze Hatch</title>
-<style>
-body { font-family: Arial, sans-serif; margin: 20px; background-color: #f8f8f8; line-height: 1.6; }
-h1, h2 { color: #2c3e50; }
-ul { margin-bottom: 15px; }
-li { margin-bottom: 5px; }
-.section-header { color: #3498db; margin-top: 25px; font-weight: bold; }
-p { margin-bottom: 10px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chevrolet Cruze Sport Premier 2 - 2022</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4a017;
+            --gold-light: #f4c430;
+            --gold-glow: rgba(212, 160, 23, 0.3);
+            --dark: #0d0d0d;
+            --dark-card: #161616;
+            --dark-surface: #1a1a1a;
+            --dark-border: #2a2a2a;
+            --text-primary: #f0f0f0;
+            --text-secondary: #999;
+            --text-muted: #666;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+        .header {
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--dark-border);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 10px 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+
+        .header-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 18px;
+            color: var(--dark);
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            height: 85vh;
+            min-height: 600px;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+            margin-top: 68px;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(13,13,13,0.2) 0%,
+                rgba(13,13,13,0.4) 40%,
+                rgba(13,13,13,0.85) 75%,
+                rgba(13,13,13,1) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 160, 23, 0.15);
+            border: 1px solid rgba(212, 160, 23, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold-light);
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .gold {
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 400;
+            max-width: 500px;
+            margin-bottom: 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .hero-stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .hero-stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* SPECS BAR */
+        .specs-bar {
+            max-width: 1300px;
+            margin: -30px auto 0;
+            padding: 0 24px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .specs-bar-inner {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            padding: 32px 40px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .spec-item {
+            text-align: center;
+            position: relative;
+        }
+
+        .spec-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 40px;
+            background: var(--dark-border);
+        }
+
+        .spec-item-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .spec-item-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .spec-item-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        /* SECTIONS */
+        .content {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            margin-top: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-title-line {
+            width: 48px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+            border-radius: 2px;
+        }
+
+        .section-count {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 220px;
+            gap: 12px;
+        }
+
+        .gallery-grid .gallery-item:nth-child(1) {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-grid .gallery-item:nth-child(5) {
+            grid-column: span 2;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            background: var(--dark-surface);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease, filter 0.3s ease;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        .gallery-item .zoom-icon {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            width: 36px;
+            height: 36px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .gallery-item:hover .zoom-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-show-more {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-surface);
+            border: 2px dashed var(--dark-border);
+            border-radius: 12px;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: 8px;
+        }
+
+        .gallery-show-more:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(212, 160, 23, 0.05);
+        }
+
+        .gallery-show-more .count {
+            font-size: 28px;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* LIGHTBOX */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 10;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lightbox-img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            object-fit: contain;
+            box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .lightbox-prev { left: 24px; }
+        .lightbox-next { right: 24px; }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            background: rgba(0,0,0,0.5);
+            padding: 8px 20px;
+            border-radius: 100px;
+        }
+
+        /* CHECKLIST */
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .checklist-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .checklist-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gold) 0%, transparent 100%);
+            border-radius: 0 2px 2px 0;
+        }
+
+        .checklist-card:hover {
+            border-color: rgba(212, 160, 23, 0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transform: translateY(-2px);
+        }
+
+        .checklist-card-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: rgba(212, 160, 23, 0.1);
+            border: 1px solid rgba(212, 160, 23, 0.2);
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 14px;
+        }
+
+        .checklist-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .checklist-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .checklist-card li {
+            padding: 7px 0;
+            padding-left: 24px;
+            position: relative;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .checklist-card li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 14px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            border: 2px solid var(--gold);
+            background: transparent;
+        }
+
+        .checklist-card li strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* DEALER / CTA */
+        .dealer-section {
+            margin-top: 80px;
+            margin-bottom: 80px;
+        }
+
+        .dealer-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 20px;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .dealer-info {
+            padding: 48px;
+        }
+
+        .dealer-info h3 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .dealer-info .dealer-name {
+            font-size: 16px;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+
+        .dealer-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .dealer-detail {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        .dealer-detail-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(212, 160, 23, 0.08);
+            border: 1px solid rgba(212, 160, 23, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .dealer-detail a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .dealer-detail a:hover {
+            color: var(--gold);
+        }
+
+        .dealer-cta {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.08) 0%, rgba(212, 160, 23, 0.02) 100%);
+            border-left: 1px solid var(--dark-border);
+            padding: 48px;
+        }
+
+        .dealer-cta-price-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .dealer-cta-price {
+            font-size: 36px;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .dealer-cta-note {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--dark);
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--gold-glow);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 160, 23, 0.5);
+        }
+
+        .cta-button-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: var(--text-secondary);
+            padding: 16px 36px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--dark-border);
+            margin-top: 12px;
+        }
+
+        .cta-button-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* TIP */
+        .tip-card {
+            background: linear-gradient(135deg, rgba(212, 160, 23, 0.06) 0%, rgba(212, 160, 23, 0.02) 100%);
+            border: 1px solid rgba(212, 160, 23, 0.15);
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            margin-top: 40px;
+        }
+
+        .tip-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(212, 160, 23, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .tip-content h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+
+        .tip-content p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 40px 24px;
+            border-top: 1px solid var(--dark-border);
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        footer p + p {
+            margin-top: 4px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .specs-bar-inner {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+
+            .spec-item:nth-child(3)::after {
+                display: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                grid-auto-rows: 180px;
+            }
+
+            .gallery-grid .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .gallery-grid .gallery-item:nth-child(5) {
+                grid-column: span 1;
+            }
+
+            .checklist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dealer-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+
+            .hero {
+                height: 70vh;
+                min-height: 500px;
+            }
+
+            .hero-stats {
+                gap: 24px;
+            }
+
+            .specs-bar-inner {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 24px;
+            }
+
+            .spec-item:nth-child(even)::after {
+                display: none;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 160px;
+            }
+
+            .gallery-grid .gallery-item:nth-child(1) {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .gallery-grid .gallery-item:nth-child(5) {
+                grid-column: span 1;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+
+            .dealer-info {
+                padding: 28px;
+            }
+
+            .dealer-cta {
+                padding: 28px;
+                border-left: none;
+                border-top: 1px solid var(--dark-border);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: 140px;
+            }
+
+            .specs-bar-inner {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
+    <header class="header" id="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">C</div>
+                <div class="logo-text">CRUZE <span>PREMIER</span></div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#fotos">Fotos</a></li>
+                    <li><a href="#inspecao">Inspeção</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<h1>Roteiro de Inspeção - Chevrolet Cruze Hatch 2022 Premier II</h1>
+    <section class="hero">
+        <div class="hero-bg">
+            <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/493031d6-4222-4352-af44-b8d3a20738df.jpeg" alt="Chevrolet Cruze Sport Premier 2">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">Disponível para venda</div>
+            <h1>Chevrolet Cruze<br><span class="gold">Sport Premier 2</span></h1>
+            <p class="hero-subtitle">Hatchback premium com acabamento de alto nível, motor turbo 1.4 e câmbio automático de 6 velocidades.</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-value">2022</span>
+                    <span class="hero-stat-label">Ano / Modelo</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">79.000 km</span>
+                    <span class="hero-stat-label">Quilometragem</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">Automático</span>
+                    <span class="hero-stat-label">Câmbio</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">Flex</span>
+                    <span class="hero-stat-label">Combustível</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<h2 class="section-header">1️⃣ Antes de ir à concessionária</h2>
-<ul>
-<li>Leve documentos pessoais e caneta + bloco de notas</li>
-<li>Tenha telefone do mecânico / vistoriador caso precise contato rápido</li>
-<li>Calculadora ou celular para simular parcelas, entrada e juros</li>
-</ul>
+    <div class="specs-bar">
+        <div class="specs-bar-inner">
+            <div class="spec-item">
+                <div class="spec-item-icon">📅</div>
+                <div class="spec-item-value">2022/2022</div>
+                <div class="spec-item-label">Ano</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-item-icon">🛣️</div>
+                <div class="spec-item-value">79.000 km</div>
+                <div class="spec-item-label">Quilometragem</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-item-icon">⚙️</div>
+                <div class="spec-item-value">Automática</div>
+                <div class="spec-item-label">Transmissão</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-item-icon">⛽</div>
+                <div class="spec-item-value">Flex</div>
+                <div class="spec-item-label">Combustível</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-item-icon">🎨</div>
+                <div class="spec-item-value">Preto</div>
+                <div class="spec-item-label">Cor</div>
+            </div>
+            <div class="spec-item">
+                <div class="spec-item-icon">🚪</div>
+                <div class="spec-item-value">4 Portas</div>
+                <div class="spec-item-label">Portas</div>
+            </div>
+        </div>
+    </div>
 
-<h2 class="section-header">2️⃣ Chegando na concessionária (Fama Mult)</h2>
-<ul>
-<li><strong>Histórico de manutenção:</strong> última revisão feita, revisões 40k/60k, manutenção corretiva</li>
-<li><strong>Documentação:</strong> IPVA/licenciamento em dia, manual e chave reserva, laudo cautelar</li>
-<li><strong>Condições de financiamento:</strong> taxa de juros, parcelas 24x/36x, amortizações futuras</li>
-<li><strong>Preço final:</strong> desconto à vista, taxas de transferência/documentação</li>
-</ul>
+    <div class="content">
+        <!-- GALERIA -->
+        <section class="section" id="fotos">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-title-line"></span>
+                    Galeria de Fotos
+                </h2>
+                <span class="section-count">20 fotos</span>
+            </div>
 
-<h2 class="section-header">3️⃣ Inspeção visual do carro</h2>
-<ul>
-<li>Exterior: pintura, amassados, pneus, faróis/lanternas</li>
-<li>Interior: bancos, multimídia, ar-condicionado, luzes do painel</li>
-<li>Motor e transmissão: vazamentos, odores, ruídos, câmbio, turbo</li>
-</ul>
+            <div class="gallery-grid" id="gallery">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/493031d6-4222-4352-af44-b8d3a20738df.jpeg" alt="Foto 1" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/13775938-9e5d-4481-b495-9b582ea712fe.jpeg" alt="Foto 2" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/abdd7b07-af90-4654-b2c4-e52a504d3ab6.jpeg" alt="Foto 3" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/b128f1c8-ae64-4ea5-b55a-3fba00ef0077.jpeg" alt="Foto 4" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/8a11e0b4-5d05-42cd-a069-9342f33a177a.jpeg" alt="Foto 5" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/a1e430f4-b0e0-45ad-899b-186598282f44.jpeg" alt="Foto 6" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/4db25733-90da-4ce1-9428-34bd3dc3abbf.jpeg" alt="Foto 7" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/5deda534-6fa9-4f03-b767-df69445da48c.jpeg" alt="Foto 8" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(8)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/d064981d-3cfb-4143-9016-f632b6fe57f4.jpeg" alt="Foto 9" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(9)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/33b233c4-00f4-4fa2-b07d-41a3b8b28f1c.jpeg" alt="Foto 10" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(10)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/6c05ec45-8939-45f8-a056-913b37afc6fd.jpeg" alt="Foto 11" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(11)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/f88bee49-6466-4e45-ae46-95fe49d7ba1e.jpeg" alt="Foto 12" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(12)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/6cbca4f2-2288-4038-b707-8b20ed1f51c3.jpeg" alt="Foto 13" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(13)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/de80c874-4ba6-4f44-804d-7ab4b052cb05.jpeg" alt="Foto 14" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(14)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/990829c6-83c4-4ddd-927a-f111b1c547e4.jpeg" alt="Foto 15" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(15)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/b86d5b6a-3420-4389-b9e9-3b7c4cdfc346.jpeg" alt="Foto 16" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(16)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/308fce32-1cd9-4893-8a81-815f69cb0021.jpeg" alt="Foto 17" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(17)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/d386e638-2d8c-4741-b7b7-a7cdd196bf30.jpeg" alt="Foto 18" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(18)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/a0414bcb-fb8e-415e-86cc-814b4b5a7f87.jpeg" alt="Foto 19" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(19)">
+                    <img src="https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/9058718f-0673-48a2-af22-ce0b664729df.jpeg" alt="Foto 20" loading="lazy">
+                    <span class="zoom-icon">&#x1F50D;</span>
+                </div>
+            </div>
+        </section>
 
-<h2 class="section-header">4️⃣ Vistoria Cautelar</h2>
-<ul>
-<li>Levar laudo ou marcar no local</li>
-<li>Verificar batidas, quilometragem, histórico de leilões, estado estrutural</li>
-</ul>
+        <!-- INSPEÇÃO -->
+        <section class="section" id="inspecao">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-title-line"></span>
+                    Roteiro de Inspeção
+                </h2>
+                <span class="section-count">8 etapas</span>
+            </div>
 
-<h2 class="section-header">5️⃣ Mecânico / inspeção técnica</h2>
-<ul>
-<li>Motor: bicos, turbo, óleo</li>
-<li>Transmissão: engates suaves, sem ruídos</li>
-<li>Suspensão: amortecedores, buchas, barra estabilizadora, pneus</li>
-<li>Sistema elétrico: painel, luzes</li>
-<li>Freios: pastilhas, discos, fluido</li>
-<li>Peças revisão 60k: válvula termostática, limpeza/substituição bicos</li>
-</ul>
+            <div class="checklist-grid">
+                <div class="checklist-card">
+                    <div class="checklist-card-number">1</div>
+                    <h3>Antes de ir à concessionária</h3>
+                    <ul>
+                        <li>Leve documentos pessoais e caneta + bloco de notas</li>
+                        <li>Tenha telefone do mecânico/vistoriador para contato rápido</li>
+                        <li>Calculadora ou celular para simular parcelas, entrada e juros</li>
+                    </ul>
+                </div>
 
-<h2 class="section-header">6️⃣ Teste de rodagem</h2>
-<ul>
-<li>Rodar 10–15 min</li>
-<li>Aceleração, câmbio, ruídos, direção/alinhamento, frenagem</li>
-</ul>
+                <div class="checklist-card">
+                    <div class="checklist-card-number">2</div>
+                    <h3>Na concessionária (Fama Mult)</h3>
+                    <ul>
+                        <li><strong>Histórico:</strong> última revisão, revisões 40k/60k, manutenção corretiva</li>
+                        <li><strong>Documentação:</strong> IPVA/licenciamento em dia, manual e chave reserva</li>
+                        <li><strong>Financiamento:</strong> taxa de juros, parcelas 24x/36x, amortizações</li>
+                        <li><strong>Preço final:</strong> desconto à vista, taxas de transferência</li>
+                    </ul>
+                </div>
 
-<h2 class="section-header">7️⃣ Avaliação financeira final</h2>
-<ul>
-<li>Confirmar entrada e parcelas</li>
-<li>Comparar 24x e 36x, juros</li>
-<li>Ver possibilidade de reduzir juros/amortizações futuras</li>
-</ul>
+                <div class="checklist-card">
+                    <div class="checklist-card-number">3</div>
+                    <h3>Inspeção Visual do Carro</h3>
+                    <ul>
+                        <li><strong>Exterior:</strong> pintura uniforme, amassados, arranhões, pneus</li>
+                        <li><strong>Interior:</strong> estado dos bancos, multimídia, ar-condicionado</li>
+                        <li><strong>Painel:</strong> verificar todas as luzes de alerta</li>
+                        <li><strong>Motor:</strong> vazamentos, odores estranhos, nível de óleo</li>
+                    </ul>
+                </div>
 
-<h2 class="section-header">8️⃣ Checklist final antes de decidir</h2>
-<ul>
-<li>Carro sem sinistro</li>
-<li>Motor, turbo e bicos ok</li>
-<li>Câmbio e suspensão ok</li>
-<li>Laudo cautelar ok</li>
-<li>Documentação em dia</li>
-<li>Preço negociado e financiável</li>
-<li>Financiamento dentro do orçamento</li>
-</ul>
+                <div class="checklist-card">
+                    <div class="checklist-card-number">4</div>
+                    <h3>Vistoria Cautelar</h3>
+                    <ul>
+                        <li>Levar laudo cautelar ou marcar no local</li>
+                        <li>Verificar histórico de batidas</li>
+                        <li>Confirmar quilometragem real</li>
+                        <li>Verificar histórico de leilões</li>
+                        <li>Estado estrutural da lataria</li>
+                    </ul>
+                </div>
 
-<p><em>Dica: leve caneta e bloco para anotações de cada item e tire fotos do carro, incluindo motor, pneus, painel e documentação.</em></p>
-  
+                <div class="checklist-card">
+                    <div class="checklist-card-number">5</div>
+                    <h3>Mecânico / Inspeção Técnica</h3>
+                    <ul>
+                        <li><strong>Motor:</strong> bicos injetores, turbo, nível e qualidade do óleo</li>
+                        <li><strong>Transmissão:</strong> engates suaves, sem ruídos ou trancos</li>
+                        <li><strong>Suspensão:</strong> amortecedores, buchas, barra estabilizadora</li>
+                        <li><strong>Elétrico:</strong> painel, luzes, sensores</li>
+                        <li><strong>Freios:</strong> pastilhas, discos, fluido de freio</li>
+                    </ul>
+                </div>
 
+                <div class="checklist-card">
+                    <div class="checklist-card-number">6</div>
+                    <h3>Teste de Rodagem</h3>
+                    <ul>
+                        <li>Rodar pelo menos 10-15 minutos</li>
+                        <li>Testar aceleração e resposta do motor</li>
+                        <li>Verificar trocas de marcha do câmbio automático</li>
+                        <li>Atenção para ruídos estranhos</li>
+                        <li>Testar direção, alinhamento e frenagem</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-card">
+                    <div class="checklist-card-number">7</div>
+                    <h3>Avaliação Financeira Final</h3>
+                    <ul>
+                        <li>Confirmar valor de entrada disponível</li>
+                        <li>Comparar condições de 24x e 36x parcelas</li>
+                        <li>Calcular total de juros em cada opção</li>
+                        <li>Verificar possibilidade de amortizações futuras</li>
+                        <li>Negociar redução de taxa de juros</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-card">
+                    <div class="checklist-card-number">8</div>
+                    <h3>Checklist Final</h3>
+                    <ul>
+                        <li>Carro sem histórico de sinistro</li>
+                        <li>Motor, turbo e bicos em perfeito estado</li>
+                        <li>Câmbio automático funcionando perfeitamente</li>
+                        <li>Suspensão sem problemas</li>
+                        <li>Laudo cautelar aprovado</li>
+                        <li>Documentação em dia e preço negociado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="tip-card">
+                <div class="tip-icon">💡</div>
+                <div class="tip-content">
+                    <h4>Dica Importante</h4>
+                    <p>Leve caneta e bloco de notas para anotar cada item da inspeção. Tire fotos detalhadas do carro, incluindo motor, pneus, painel, documentação e qualquer detalhe que considere relevante. Não tenha pressa na avaliação e, se possível, leve um mecânico de confiança.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section class="dealer-section" id="contato">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-title-line"></span>
+                    Entre em Contato
+                </h2>
+            </div>
+
+            <div class="dealer-card">
+                <div class="dealer-info">
+                    <h3>Informações da Loja</h3>
+                    <p class="dealer-name">Fama Mult</p>
+
+                    <div class="dealer-details">
+                        <div class="dealer-detail">
+                            <div class="dealer-detail-icon">📍</div>
+                            <span>Rua Marechal Barbacena, 625 - Tatuapé, São Paulo - SP</span>
+                        </div>
+                        <div class="dealer-detail">
+                            <div class="dealer-detail-icon">📞</div>
+                            <a href="tel:1122681055">(11) 2268-1055</a>
+                        </div>
+                        <div class="dealer-detail">
+                            <div class="dealer-detail-icon">📱</div>
+                            <a href="https://wa.me/5511996963797">(11) 99696-3797</a>
+                        </div>
+                        <div class="dealer-detail">
+                            <div class="dealer-detail-icon">✉️</div>
+                            <a href="mailto:famamult@hotmail.com">famamult@hotmail.com</a>
+                        </div>
+                        <div class="dealer-detail">
+                            <div class="dealer-detail-icon">🌐</div>
+                            <a href="https://famamult.com.br/detalhes.php?id=100217" target="_blank">Ver anúncio completo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dealer-cta">
+                    <span class="dealer-cta-price-label">Consulte o valor</span>
+                    <span class="dealer-cta-price">Cruze Premier</span>
+                    <span class="dealer-cta-note">Financiamento disponível</span>
+
+                    <a href="https://wa.me/5511996963797?text=Olá! Tenho interesse no Chevrolet Cruze Sport Premier 2 2022." class="cta-button">
+                        💬 Chamar no WhatsApp
+                    </a>
+                    <a href="tel:1122681055" class="cta-button-secondary">
+                        📞 Ligar agora
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Desenvolvido para auxiliar na compra do Chevrolet Cruze Sport Premier 2 - 2022</p>
+        <p>Última atualização: Março de 2026</p>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="navigateLightbox(-1)">&#8249;</button>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Foto ampliada">
+        <button class="lightbox-nav lightbox-next" onclick="navigateLightbox(1)">&#8250;</button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <script>
+        const images = [
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/493031d6-4222-4352-af44-b8d3a20738df.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/13775938-9e5d-4481-b495-9b582ea712fe.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/abdd7b07-af90-4654-b2c4-e52a504d3ab6.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/b128f1c8-ae64-4ea5-b55a-3fba00ef0077.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/8a11e0b4-5d05-42cd-a069-9342f33a177a.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/a1e430f4-b0e0-45ad-899b-186598282f44.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/4db25733-90da-4ce1-9428-34bd3dc3abbf.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/5deda534-6fa9-4f03-b767-df69445da48c.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/d064981d-3cfb-4143-9016-f632b6fe57f4.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/33b233c4-00f4-4fa2-b07d-41a3b8b28f1c.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/6c05ec45-8939-45f8-a056-913b37afc6fd.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/f88bee49-6466-4e45-ae46-95fe49d7ba1e.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/6cbca4f2-2288-4038-b707-8b20ed1f51c3.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/de80c874-4ba6-4f44-804d-7ab4b052cb05.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/990829c6-83c4-4ddd-927a-f111b1c547e4.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/b86d5b6a-3420-4389-b9e9-3b7c4cdfc346.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/308fce32-1cd9-4893-8a81-815f69cb0021.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/d386e638-2d8c-4741-b7b7-a7cdd196bf30.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/a0414bcb-fb8e-415e-86cc-814b4b5a7f87.jpeg',
+            'https://s3.amazonaws.com/softcar-imagens/dominios/85/veiculos/100217/9058718f-0673-48a2-af22-ce0b664729df.jpeg'
+        ];
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+            img.src = images[index];
+            counter.textContent = (index + 1) + ' / ' + images.length;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(dir) {
+            currentIndex = (currentIndex + dir + images.length) % images.length;
+            const img = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+            img.src = images[currentIndex];
+            counter.textContent = (currentIndex + 1) + ' / ' + images.length;
+        }
+
+        document.addEventListener('keydown', function(e) {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeLightbox();
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
